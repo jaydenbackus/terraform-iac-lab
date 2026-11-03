@@ -1,0 +1,17 @@
+# Terraform working files
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Variable files may hold account-specific values
+*.tfvars
+*.tfvars.json
+
+.DS_Store
