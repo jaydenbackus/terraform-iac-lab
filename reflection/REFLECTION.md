@@ -2,7 +2,7 @@
 
 **1. Which cloud provider did you choose, and why?**
 
-AWS. TODO: your reason (for example, an account and CLI were already set up).
+AWS. I already had an AWS account, and the AWS CLI was installed and signed in, so Terraform could authenticate without extra setup. S3 is also one of the most widely used cloud services, which makes it a useful first resource to learn.
 
 **2. What resource did you create?**
 
@@ -26,7 +26,10 @@ Terraform planned 2 to destroy. It removed the public-access block first, then t
 
 **7. What error or challenge did you encounter, if any, and how did you troubleshoot it?**
 
-TODO: describe any issue (for example, a bucket name already taken, or an authentication error) and how you fixed it.
+The deployment itself ran without errors, but two points needed attention:
+
+- **Globally unique bucket names.** S3 bucket names are shared across every AWS account, so a generic name could collide with someone else's. I added my username and six random digits (`jaydenbackus-iac-lab-652767`), and `terraform plan` and `apply` succeeded on the first try.
+- **Which identity Terraform used.** Running `aws sts get-caller-identity` showed I was signed in as the account's root user. Terraform works with those credentials, but AWS recommends against using root for daily work. The better practice is an IAM user or IAM Identity Center role with only the permissions the task needs.
 
 **8. What is one benefit of using Infrastructure as Code instead of manually creating cloud resources?**
 
